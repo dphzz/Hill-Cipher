@@ -82,11 +82,11 @@ if (Selection == 2)
     %Sau do nhan gia tri CommonFactor voi ma tran phu hop cua KeyMatrix
     %Roi lay phan du khi chia 27 cua ma tran cuoi cung de ra duoc ma tran Modulo Inverse
 
-    InvKeyMatrix = inv(KeyMatrix);
+    InvKeyMatrix = sym(inv(KeyMatrix));
     InvKeyMatrix = InvKeyMatrix*det(KeyMatrix);
     %Tim thua so chung
     for i = 1:27
-        if (mod(det(KeyMatrix)*i, 27) == 1)
+        if (mod(sym(det(KeyMatrix))*i, 27) == 1)
             CommonFactor = i;
             break;
         end
@@ -106,7 +106,7 @@ if (Selection == 2)
     CharMatrix = Num2Char(DecryptedMatrix);
     disp('Thong tin giai ma:')
     Matr2Str(CharMatrix)
-    
+
 end
 
 
