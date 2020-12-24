@@ -50,6 +50,8 @@ if (Selection == 1)
     Matr2Str(Num2Char(EncryptedMatrix))
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 if (Selection == 2)
     UserInput = input('Nhap day ky tu can giai ma: ', 's'); %'s'de nhan input la 1 string
     EncryptedMatrix = Char2Num(Str2Matr(UserInput))
@@ -57,8 +59,8 @@ if (Selection == 2)
 
     disp("Vui long nhap ma tran chia khoa")
     KeyMatrix = (0);
-    while (gcd(int8(det(KeyMatrix)), 27) ~= 1)
-        if ((gcd(int8(det(KeyMatrix)), 27) ~= 1) && (size(KeyMatrix,1) ~= 1))
+    while (gcd(sym(det(KeyMatrix)), 27) ~= 1)
+        if ((gcd(sym(det(KeyMatrix)), 27) ~= 1) && (size(KeyMatrix,1) ~= 1))
             disp('Ma tran khong hop le')
         end
         clear KeyMatrix
