@@ -54,7 +54,7 @@ end
 
 if (Selection == 2)
     UserInput = input('Nhap day ky tu can giai ma: ', 's'); %'s'de nhan input la 1 string
-    EncryptedMatrix = Char2Num(Str2Matr(UserInput))
+    EncryptedMatrix = sym(Char2Num(Str2Matr(UserInput)))
 
 
     disp("Vui long nhap ma tran chia khoa")
@@ -76,6 +76,7 @@ if (Selection == 2)
                 KeyMatrix(i,j) = check
             end
         end
+        KeyMatrix = sym(KeyMatrix);
     end
 
         %Giai ma thong tin
