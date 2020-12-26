@@ -41,6 +41,7 @@ if (Selection == 1)
     
     %Ma hoa thong tin
     EncryptedMatrix = KeyMatrix*NumMatrix;
+    
     EncryptedMatrix = mod(EncryptedMatrix, 29);
 
     %Xuat ma tran ma hoa ra man hinh
@@ -114,7 +115,7 @@ end
 
 
 function alp = Char2Num(input)
-    alphabet = ' abcdefghijklmnopqrstuvwxyz';
+    alphabet = '/ abcdefghijklmnopqrstuvwxyz';
     clear alp;
     
     for j = 1:size(input,2)
@@ -123,7 +124,7 @@ function alp = Char2Num(input)
                 if (input(i,j) == alphabet(k))
                     alp(i,j) = k;
                     break;
-                else alp(i,j) = 0;
+                else alp(i,j) = 1;
                 end 
             
             end
@@ -133,7 +134,7 @@ function alp = Char2Num(input)
 end
 
 function invalp = Num2Char(input)
-    alphabet = ' abcdefghijklmnopqrstuvwxyz';
+    alphabet = '/ abcdefghijklmnopqrstuvwxyz';
     invalp = ''; %type cya invalp phai la char thi moi chap nhan du lieu dung
     
     for j = 1:size(input,2)
@@ -142,7 +143,7 @@ function invalp = Num2Char(input)
                 if (input(i,j) == k)
                     invalp(i,j) = alphabet(k);
                     break;
-                else invalp(i,j) = 0;
+                else invalp(i,j) = '/';
                 end 
             
             end
