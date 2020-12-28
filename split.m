@@ -19,8 +19,8 @@ if (Selection == 1)
     %Nhap ma tran ma hoa
     disp("Vui long nhap ma tran ma hoa")
     KeyMatrix = (0);
-    while (gcd(int8(det(KeyMatrix)), 29) ~= 1)
-        if ((gcd(int8(det(KeyMatrix)), 29) ~= 1) && (size(KeyMatrix,1) ~= 1))
+    while (gcd(sym(det(KeyMatrix)), 28) ~= 1)
+        if ((gcd(sym(det(KeyMatrix)), 28) ~= 1) && (size(KeyMatrix,1) ~= 1))
             disp('Ma tran khong hop le')
         end
         clear KeyMatrix
@@ -42,7 +42,7 @@ if (Selection == 1)
     %Ma hoa thong tin
     EncryptedMatrix = KeyMatrix*NumMatrix;
     
-    EncryptedMatrix = mod(EncryptedMatrix, 29);
+    EncryptedMatrix = mod(EncryptedMatrix, 28);
 
     %Xuat ma tran ma hoa ra man hinh
     disp('Ma tran chia khoa:');
@@ -60,8 +60,8 @@ if (Selection == 2)
 
     disp("Vui long nhap ma tran chia khoa")
     KeyMatrix = (0);
-    while (gcd(sym(det(KeyMatrix)), 29) ~= 1)
-        if ((gcd(sym(det(KeyMatrix)), 29) ~= 1) && (size(KeyMatrix,1) ~= 1))
+    while (gcd(sym(det(KeyMatrix)), 28) ~= 1)
+        if ((gcd(sym(det(KeyMatrix)), 28) ~= 1) && (size(KeyMatrix,1) ~= 1))
             disp('Ma tran khong hop le')
         end
         clear KeyMatrix
@@ -82,28 +82,28 @@ if (Selection == 2)
 
         %Giai ma thong tin
     % Tim ma tran phu hop theo nguyen tac Modulo Inverse of a Matrix
-    %Tim gia tri CommonFactor de mod(det(Keymatrix)*CommonFactor, 29) = 1
+    %Tim gia tri CommonFactor de mod(det(Keymatrix)*CommonFactor, 28) = 1
     %Sau do nhan gia tri CommonFactor voi ma tran phu hop cua KeyMatrix
-    %Roi lay phan du khi chia 29 cua ma tran cuoi cung de ra duoc ma tran Modulo Inverse
+    %Roi lay phan du khi chia 28 cua ma tran cuoi cung de ra duoc ma tran Modulo Inverse
 
     InvKeyMatrix = sym(inv(KeyMatrix));
     InvKeyMatrix = InvKeyMatrix*det(KeyMatrix);
     %Tim thua so chung
-    for i = 1:29
-        if (mod(sym(det(KeyMatrix))*i, 29) == 1)
+    for i = 1:28
+        if (mod(sym(det(KeyMatrix))*i, 28) == 1)
             CommonFactor = i;
             break;
         end
     end
     InvKeyMatrix = InvKeyMatrix*CommonFactor;
-    InvKeyMatrix = mod(InvKeyMatrix, 29);
+    InvKeyMatrix = mod(InvKeyMatrix, 28);
 
     %Giai ma ma tran EncryptedMatrix
     DecryptedMatrix = InvKeyMatrix*EncryptedMatrix;
     % DecryptedMatrix = int8(DecryptedMatrix);
 
-    %Bien doi DecryptedMatrix sang dang chia lay du cua 29
-    DecryptedMatrix = mod(sym(DecryptedMatrix), 29);
+    %Bien doi DecryptedMatrix sang dang chia lay du cua 28
+    DecryptedMatrix = mod(sym(DecryptedMatrix), 28);
 
     %Chuyen DecryptedMatrix sang dang chu binh thuong
 
@@ -115,7 +115,7 @@ end
 
 
 function alp = Char2Num(input)
-    alphabet = '/ abcdefghijklmnopqrstuvwxyz';
+    alphabet = ' abcdefghijklmnopqrstuvwxyz';
     clear alp;
     
     for j = 1:size(input,2)
@@ -134,7 +134,7 @@ function alp = Char2Num(input)
 end
 
 function invalp = Num2Char(input)
-    alphabet = '/ abcdefghijklmnopqrstuvwxyz';
+    alphabet = ' abcdefghijklmnopqrstuvwxyz';
     invalp = ''; %type cya invalp phai la char thi moi chap nhan du lieu dung
     
     for j = 1:size(input,2)
@@ -143,7 +143,7 @@ function invalp = Num2Char(input)
                 if (input(i,j) == k)
                     invalp(i,j) = alphabet(k);
                     break;
-                else invalp(i,j) = '/';
+                else invalp(i,j) = alphabet(1);
                 end 
             
             end
